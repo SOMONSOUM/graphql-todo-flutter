@@ -24,6 +24,7 @@ const baseTypeDef = gql`
 const server = new ApolloServer({
   typeDefs: [baseTypeDef, user, todo],
   resolvers: _.merge({}, UserResolver, TodoResolver),
+  introspection: process.env.APPLICATION_ENV !== 'production',
   plugins: [
     // Install a landing page plugin based on NODE_ENV
     process.env.NODE_ENV === 'production'
